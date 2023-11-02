@@ -1,0 +1,35 @@
+{
+  "name": "artisan",
+  "version": "0.0.1",
+  "description": "Simple SVG builder for Node.",
+  "main": "./dist/index.js",
+  "keywords": [
+    "svg",
+    "svg-generator",
+    "svg-builder"
+  ],
+  "scripts": {
+    "build": "pnpm clean && tsc",
+    "build:watch": "pnpm clean && tsc --watch",
+    "clean": "pnpm exec rimraf dist/",
+    "madge": "pnpm exec madge --circular --extensions ts ./src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/f2face/artisan"
+  },
+  "author": "Surya Oktafendri <dev@f2face.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.8.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "madge": "^6.1.0",
+    "prettier": "^3.0.3",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.2.2"
+  }
+}
