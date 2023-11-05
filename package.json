@@ -1,8 +1,11 @@
 {
-  "name": "artisan",
-  "version": "0.0.1",
+  "name": "svg-artisan",
+  "version": "0.1.0",
   "description": "Simple SVG builder for Node.",
   "main": "./dist/index.js",
+  "files": [
+    "dist/"
+  ],
   "keywords": [
     "svg",
     "svg-generator",
