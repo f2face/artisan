@@ -18,8 +18,10 @@ export abstract class BaseElement implements SvgElement {
     private normalizeContent(content?: ElementContent) {
         if (typeof content === 'string') {
             return content;
+        } else if (typeof content === 'number') {
+            return String(content);
         } else if (content instanceof BaseElement) {
-            return content?.render();
+            return content.render();
         } else if (Array.isArray(content)) {
             const elements = content.map((el) => {
                 if (el instanceof BaseElement) return el.render();
