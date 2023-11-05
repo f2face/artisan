@@ -92,7 +92,9 @@ export abstract class BaseElement implements SvgElement {
         if (this.attributesMap) {
             attrs = ` `;
             attrs += [...this.attributesMap]
-                .map(([key, value]) => (value ? `${key}="${value}"` : `${key}`))
+                .map(([key, value]) =>
+                    value !== null ? `${key}="${value}"` : `${key}`
+                )
                 .join(' ');
         }
 
