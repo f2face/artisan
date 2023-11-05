@@ -2,8 +2,8 @@ import { ElementAttributes } from '../types';
 import { BaseElement } from './BaseElement';
 
 export class Style extends BaseElement {
-    public name = 'style';
-    public hasClosingTag = true;
+    public readonly name = 'style';
+    public readonly hasClosingTag = true;
 
     constructor(attributes?: ElementAttributes, content?: string) {
         super(attributes, content);

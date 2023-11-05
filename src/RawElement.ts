@@ -4,7 +4,7 @@ import { BaseElement } from './elements/BaseElement';
 export class RawElement extends BaseElement {
     constructor(
         public readonly name: string,
-        public readonly hasClosingTag: boolean = true,
+        public readonly hasClosingTag = true,
         attributes?: ElementAttributes,
         content?: ElementContent
     ) {
