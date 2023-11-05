@@ -20,6 +20,13 @@ export function text(attributes?: ElementAttributes, content?: ElementContent) {
     return RawElement.create('text', true, attributes, content);
 }
 
+export function tspan(
+    attributes?: ElementAttributes,
+    content?: ElementContent
+) {
+    return RawElement.create('tspan', true, attributes, content);
+}
+
 export function foreignObject(
     attributes?: ElementAttributes,
     content?: ElementContent
