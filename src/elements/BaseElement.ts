@@ -46,6 +46,13 @@ export abstract class BaseElement implements SvgElement {
         return value;
     }
 
+    protected replaceDoubleQuote(value: string | number) {
+        if (typeof value === 'string') {
+            return value.replace(/"/g, "'");
+        }
+        return value;
+    }
+
     public getAttributes() {
         return this.attributesMap;
     }
@@ -78,13 +85,15 @@ export abstract class BaseElement implements SvgElement {
         return this;
     }
 
-    public style(style: { [attr: string]: AttributeValue }) {
-        this.addAttributeToMap(
-            'style',
-            Object.entries(style)
-                .map(([attr, value]) => `${attr}:${value};`)
-                .join(' ')
-        );
+    public style(style: { [property: string]: string | number }) {
+        const value = Object.entries(style)
+            .map(([prop, value]) => {
+                const newProp = this.replaceDoubleQuote(prop);
+                const newValue = this.replaceDoubleQuote(value);
+                return `${newProp}:${newValue};`;
+            })
+            .join(' ');
+        this.addAttributeToMap('style', value);
         return this;
     }
 
