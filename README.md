@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/svg-artisan.svg)](https://badge.fury.io/js/svg-artisan)
+
 # SVG-Artisan
 
 Simple SVG builder/generator for NodeJS.
@@ -6,8 +8,16 @@ Inspired by [svg-builder](https://github.com/JoeChapman/svg-builder) by Joseph C
 
 ## Installation
 
-```bash
+#### pnpm
+
+```shell
 pnpm i svg-artisan
+```
+
+#### npm
+
+```shell
+npm i svg-artisan
 ```
 
 ## Example
