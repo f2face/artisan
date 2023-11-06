@@ -1,6 +1,5 @@
 export interface SvgElement {
     name: string;
-    hasClosingTag: boolean;
     render(): string;
 }
 

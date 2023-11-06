@@ -38,17 +38,20 @@ const element2 = node.line(/* ... */);
 const element3 = node.text(/* ... */);
 svg.appendChild(element1, element2, element3);
 
-// Add other element (advanced)
+// Add other/custom element (advanced)
 const gradient = RawElement.create(
-    'gradient', // Element/tag name
-    true, // Closing tag
-    { id: 'myGradient' } /* ... */
+    'gradient', // Element or tag name
+    { id: 'myGradient' }, // Attributes
+    [
+        /* Content or child element(s) inside this `gradient` element */
+    ]
 );
-const defs = RawElement.create('defs', true).appendChild(gradient);
+const defs = RawElement.create('defs').appendChild(gradient);
 svg.appendChild(defs);
 
-// Add styling
-const style = Style.create({}, '#myGradient { /* ... */ }');
+// Add style
+const style = Style.create({}, '#myText { font-weight: bold; }');
+svg.appendChild(style);
 
 // Render SVG
 const data = svg.render();

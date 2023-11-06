@@ -3,7 +3,6 @@ import { SvgElement } from '../interfaces';
 
 export abstract class BaseElement implements SvgElement {
     public abstract readonly name: string;
-    public abstract readonly hasClosingTag: boolean;
 
     protected attributesMap?: Map<string, AttributeValue>;
     protected content: string;
@@ -93,7 +92,7 @@ export abstract class BaseElement implements SvgElement {
         let attrs = '';
         if (this.attributesMap) {
             attrs = ` `;
-            attrs += [...this.attributesMap]
+            attrs += Array.from(this.attributesMap.entries())
                 .map(([key, value]) =>
                     value !== null ? `${key}="${value}"` : `${key}`
                 )
@@ -101,7 +100,7 @@ export abstract class BaseElement implements SvgElement {
         }
 
         let element = `<${this.name}${attrs}`;
-        if (this.hasClosingTag) {
+        if (this.content.length) {
             element += '>';
             element += this.content;
             element += `</${this.name}>`;

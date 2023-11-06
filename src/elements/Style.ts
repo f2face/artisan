@@ -3,7 +3,6 @@ import { BaseElement } from './BaseElement';
 
 export class Style extends BaseElement {
     public readonly name = 'style';
-    public readonly hasClosingTag = true;
 
     constructor(attributes?: ElementAttributes, content?: string) {
         super(attributes, content);

@@ -11,7 +11,6 @@ import { BaseElement } from './elements/BaseElement';
  */
 export class Svg extends BaseElement {
     public readonly name = 'svg';
-    public readonly hasClosingTag = true;
 
     /**
      * Creates a new SVG root element.
