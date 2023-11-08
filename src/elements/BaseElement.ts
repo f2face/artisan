@@ -28,13 +28,21 @@ export abstract class BaseElement implements SvgElement {
         this.attributesMap.set(attribute, this.escapeAttributeValue(value));
     }
 
-    private escapeAttributeValue(value: AttributeValue) {
+    /**
+     * Escapes attribute value.
+     * @param value
+     */
+    private escapeAttributeValue(value: AttributeValue): AttributeValue {
         if (typeof value === 'string') {
             return value.replace(/"/g, '&quot;');
         }
         return value;
     }
 
+    /**
+     * Replaces double quote with single quote.
+     * @param value
+     */
     protected replaceDoubleQuote(value: string | number) {
         if (typeof value === 'string') {
             return value.replace(/"/g, "'");
@@ -74,6 +82,10 @@ export abstract class BaseElement implements SvgElement {
         return this;
     }
 
+    /**
+     * Sets inline style for the element.
+     * @param style An object representing the inline style properties and their values.
+     */
     public style(style: { [property: string]: string | number }) {
         const value = Object.entries(style)
             .map(([prop, value]) => {
