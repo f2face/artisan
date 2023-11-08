@@ -8,32 +8,24 @@ export abstract class BaseElement implements SvgElement {
     protected content: string;
 
     constructor(attributes?: ElementAttributes, content?: ElementContent) {
-        if (attributes) {
-            this.setAttribute(attributes);
-        }
+        if (attributes) this.setAttribute(attributes);
         this.content = this.normalizeContent(content);
     }
 
-    private normalizeContent(content?: ElementContent) {
+    private normalizeContent(content?: ElementContent): string {
         if (typeof content === 'string') return content;
-        else if (typeof content === 'number') return String(content);
-        else if (content instanceof BaseElement) return content.render();
-        else if (Array.isArray(content)) {
-            const elements = content.map((el) => {
-                if (el instanceof BaseElement) return el.render();
-            });
+        if (typeof content === 'number') return String(content);
+        if (content instanceof BaseElement) return content.render();
+        if (Array.isArray(content)) {
+            const elements = content.map((el) => this.normalizeContent(el));
             return elements.join('');
         }
-
         return '';
     }
 
-    private addAttributeToMap(key: string, value: AttributeValue) {
-        if (!this.attributesMap) {
-            this.attributesMap = new Map();
-        }
-
-        this.attributesMap.set(key, this.escapeAttributeValue(value));
+    private addAttributeToMap(attribute: string, value: AttributeValue) {
+        if (!this.attributesMap) this.attributesMap = new Map();
+        this.attributesMap.set(attribute, this.escapeAttributeValue(value));
     }
 
     private escapeAttributeValue(value: AttributeValue) {
@@ -67,8 +59,8 @@ export abstract class BaseElement implements SvgElement {
         if (typeof attr === 'string' && typeof value !== 'undefined') {
             this.addAttributeToMap(attr, value);
         } else {
-            Object.entries(attr).forEach(([key, value]) =>
-                this.addAttributeToMap(key, value)
+            Object.entries(attr).forEach(([attr, value]) =>
+                this.addAttributeToMap(attr, value)
             );
         }
 
@@ -99,8 +91,8 @@ export abstract class BaseElement implements SvgElement {
         if (this.attributesMap) {
             attrs = ` `;
             attrs += Array.from(this.attributesMap.entries())
-                .map(([key, value]) =>
-                    value !== null ? `${key}="${value}"` : `${key}`
+                .map(([attr, value]) =>
+                    value !== null ? `${attr}="${value}"` : `${attr}`
                 )
                 .join(' ');
         }
