@@ -59,3 +59,13 @@ const data = svg.render();
 // Render as Buffer
 const svgBuffer = svg.buffer();
 ```
+
+## Validate SVG
+
+Currently, this library does not validate the element and attribute.
+
+If you want validate the generated SVG, use [is-svg](https://www.npmjs.com/package/is-svg) npm package.
+
+## Rasterize SVG
+
+To convert SVG into raster format (PNG, JPG, etc) programmatically, you can use npm package such as `sharp`, `gm`, or other image processor.
