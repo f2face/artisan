@@ -5,7 +5,7 @@ export abstract class BaseElement implements SvgElement {
     public abstract readonly name: string;
 
     protected attributesMap?: Map<string, AttributeValue>;
-    protected content: string;
+    protected content?: string;
 
     constructor(attributes?: ElementAttributes, content?: ElementContent) {
         if (attributes) this.setAttribute(attributes);
@@ -69,7 +69,7 @@ export abstract class BaseElement implements SvgElement {
     /**
      * Returns the content of this SVG element as a `string`.
      */
-    public getContent(): string {
+    public getContent(): string | undefined {
         return this.content;
     }
 
@@ -90,11 +90,12 @@ export abstract class BaseElement implements SvgElement {
         attr: string | ElementAttributes,
         value?: AttributeValue
     ): this {
-        if (typeof attr === 'string' && typeof value !== 'undefined') {
-            this.addAttributeToMap(attr, value);
+        if (typeof attr === 'string') {
+            if (typeof value !== 'undefined')
+                this.addAttributeToMap(attr, value);
         } else {
             Object.entries(attr).forEach(([attr, value]) =>
-                this.addAttributeToMap(attr, value)
+                this.setAttribute(attr, value)
             );
         }
 
@@ -118,7 +119,7 @@ export abstract class BaseElement implements SvgElement {
      * Sets inline style for the element.
      * @param style An object representing the inline style properties and their values.
      */
-    public style(style: { [property: string]: string | number }): this {
+    public style(style: Record<string, string | number>): this {
         const value = Object.entries(style)
             .map(([prop, value]) => {
                 const newProp = this.replaceDoubleQuote(prop);
@@ -146,7 +147,7 @@ export abstract class BaseElement implements SvgElement {
         }
 
         let element = `<${this.name}${attrs}`;
-        if (this.content.length) {
+        if (this.content?.length) {
             element += '>';
             element += this.content;
             element += `</${this.name}>`;
