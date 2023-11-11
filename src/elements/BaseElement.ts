@@ -19,7 +19,13 @@ export abstract class BaseElement implements SvgElement {
     private normalizeContent(content?: ElementContent): string {
         if (typeof content === 'string') return content;
         if (typeof content === 'number') return String(content);
-        if (content instanceof BaseElement) return content.render();
+        if (content instanceof BaseElement) {
+            if (content.name.toLowerCase() === 'svg') {
+                content.attributesMap?.delete('xmlns');
+                content.attributesMap?.delete('xmlns:xlink');
+            }
+            return content.render();
+        }
         if (Array.isArray(content)) {
             const elements = content.map((el) => this.normalizeContent(el));
             return elements.join('');
@@ -136,17 +142,17 @@ export abstract class BaseElement implements SvgElement {
      * @returns A `string` representing the SVG element.
      */
     public render(): string {
-        let attrs = '';
-        if (this.attributesMap) {
-            attrs = ` `;
-            attrs += Array.from(this.attributesMap.entries())
-                .map(([attr, value]) =>
-                    value !== null ? `${attr}="${value}"` : `${attr}`
-                )
+        let element = `<${this.name}`;
+
+        if (this.attributesMap?.size) {
+            element += ` `;
+            element += Array.from(this.attributesMap.entries())
+                .map(([attr, value]) => {
+                    return value !== null ? `${attr}="${value}"` : `${attr}`;
+                })
                 .join(' ');
         }
 
-        let element = `<${this.name}${attrs}`;
         if (this.content?.length) {
             element += '>';
             element += this.content;
