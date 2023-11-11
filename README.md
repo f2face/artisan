@@ -1,4 +1,4 @@
-[![npm version](https://badge.fury.io/js/svg-artisan.svg)](https://badge.fury.io/js/svg-artisan)
+[![npm version](https://img.shields.io/npm/v/svg-artisan.svg?style=flat)](https://www.npmjs.com/package/svg-artisan)
 
 # SVG-Artisan
 
