@@ -1,6 +1,6 @@
 {
   "name": "svg-artisan",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Simple SVG builder for Node.",
   "main": "./dist/index.js",
   "files": [
@@ -25,14 +25,14 @@
   "author": "Surya Oktafendri <dev@f2face.com>",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^20.8.0",
-    "@typescript-eslint/eslint-plugin": "^6.7.4",
-    "@typescript-eslint/parser": "^6.7.4",
-    "eslint": "^8.50.0",
-    "eslint-config-prettier": "^9.0.0",
+    "@types/node": "^20.16.5",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
     "madge": "^6.1.0",
-    "prettier": "^3.0.3",
-    "rimraf": "^5.0.5",
-    "typescript": "^5.2.2"
+    "prettier": "^3.3.3",
+    "rimraf": "^5.0.10",
+    "typescript": "^5.6.2"
   }
 }
